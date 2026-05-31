@@ -6,8 +6,8 @@ export default function Home() {
     <>
       <Header />
 
-      <main className="min-h-screen bg-[#070b14] text-white px-6 pt-32 pb-24">
-        <section className="relative mx-auto flex min-h-[520px] max-w-7xl items-center justify-center overflow-hidden rounded-[5rem] border-2 border-blue-500/80 bg-[#0b1020] shadow-[0_0_40px_rgba(59,130,246,0.25)]">
+      <main className="min-h-screen bg-[#070b14] px-4 pt-28 pb-20 text-white md:px-6 md:pt-32 md:pb-24">
+        <section className="relative mx-auto flex min-h-[520px] max-w-7xl items-center justify-center overflow-hidden rounded-[3rem] border-2 border-blue-500/80 bg-[#0b1020] shadow-[0_0_40px_rgba(59,130,246,0.25)] md:rounded-[5rem]">
           <div
             className="absolute inset-0 scale-105 bg-cover bg-center opacity-35 blur-sm"
             style={{
@@ -18,7 +18,7 @@ export default function Home() {
 
           <div className="absolute inset-0 bg-gradient-to-r from-[#050816]/80 via-[#0b1020]/60 to-purple-950/70" />
 
-          <div className="relative z-10 px-6 text-center">
+          <div className="relative z-10 px-4 text-center md:px-6">
             <h1 className="text-5xl font-light tracking-wide drop-shadow-[0_0_20px_rgba(147,197,253,0.45)] md:text-7xl">
               José Filho
             </h1>
@@ -31,18 +31,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          id="sobre"
-          className="mx-auto mt-24 max-w-7xl scroll-mt-32"
-        >
-          <h2 className="mb-10 text-4xl font-light tracking-wide text-blue-100 md:text-5xl">
+        <section id="sobre" className="mx-auto mt-20 max-w-7xl scroll-mt-28 md:mt-24 md:scroll-mt-32">
+          <h2 className="mb-8 text-4xl font-light tracking-wide text-blue-100 md:mb-10 md:text-5xl">
             Sobre José Filho
           </h2>
 
-          <div className="relative overflow-hidden rounded-[4rem] border border-blue-500/70 bg-[#0b1020]/80 p-8 shadow-[0_0_35px_rgba(59,130,246,0.18)] md:p-12">
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-blue-500/70 bg-[#0b1020]/80 p-6 shadow-[0_0_35px_rgba(59,130,246,0.18)] md:rounded-[4rem] md:p-12">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-transparent to-purple-950/30" />
 
-            <div className="relative z-10 space-y-6 text-lg leading-relaxed text-gray-300 md:text-xl">
+            <div className="relative z-10 space-y-5 text-base leading-relaxed text-gray-300 md:space-y-6 md:text-xl">
               <p>
                 Meu nome é José Arnaldo de Carvalho Filho e sou estudante de
                 Análise e Desenvolvimento de Sistemas na FAMINAS, atualmente
@@ -77,9 +74,9 @@ export default function Home() {
                 Este site foi criado com o objetivo de compartilhar minhas
                 opiniões, análises e reflexões sobre temas relacionados à
                 política, tecnologia e assuntos que considero relevantes para a
-                sociedade atual. Aqui você encontrará artigos nos quais
-                apresento minhas perspectivas e argumentos sobre diferentes
-                temas, sempre buscando promover o debate e a troca de ideias.
+                sociedade atual. Aqui você encontrará artigos nos quais apresento
+                minhas perspectivas e argumentos sobre diferentes temas, sempre
+                buscando promover o debate e a troca de ideias.
               </p>
 
               <p>
@@ -94,8 +91,8 @@ export default function Home() {
               <p>
                 Se você gosta de tecnologia, política, cultura nerd e discussões
                 sobre o mundo atual, espero que encontre aqui conteúdos
-                interessantes e que este espaço possa se tornar um ponto de
-                troca de ideias e aprendizado.
+                interessantes e que este espaço possa se tornar um ponto de troca
+                de ideias e aprendizado.
               </p>
 
               <p className="text-center text-xl font-medium text-blue-200 md:text-2xl">
@@ -105,6 +102,7 @@ export default function Home() {
           </div>
         </section>
       </main>
+
       <Footer />
     </>
   );

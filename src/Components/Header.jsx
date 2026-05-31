@@ -10,32 +10,41 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full border-b border-blue-500/30 backdrop-blur-md bg-[#070b14]/85">
-      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-8">
-        <Link to="/" className="transition duration-300 hover:scale-105">
-          <img src={logo} alt="José Filho" className="h-14 w-auto" />
+    <header className="fixed left-0 top-0 z-50 w-full border-b border-blue-500/30 bg-[#070b14]/95 backdrop-blur-md">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 md:h-24 md:px-8">
+        <Link to="/" className="shrink-0 transition duration-300 hover:scale-105">
+          <img src={logo} alt="José Filho" className="h-9 w-auto md:h-14" />
         </Link>
 
-        <nav>
-          <ul className="flex items-center gap-12 text-xl font-light">
+        <nav className="max-w-[75vw] overflow-x-auto scrollbar-hide">
+          <ul className="flex min-w-max items-center gap-6 text-base font-light md:gap-12 md:text-xl">
             <li>
-              <Link to="/" className="group relative text-gray-300 transition hover:text-blue-300">
+              <Link
+                to="/"
+                className="group relative text-gray-300 transition hover:text-blue-300"
+              >
                 início
-                <span className="absolute -bottom-2 left-0 h-[3px] w-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-2 left-0 h-[3px] w-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full" />
               </Link>
             </li>
 
             <li>
-              <Link to="/opinioes" className="group relative text-gray-300 transition hover:text-blue-300">
+              <Link
+                to="/opinioes"
+                className="group relative text-gray-300 transition hover:text-blue-300"
+              >
                 opiniões
-                <span className="absolute -bottom-2 left-0 h-[3px] w-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-2 left-0 h-[3px] w-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full" />
               </Link>
             </li>
 
             <li>
-              <Link to="/recomendacoes" className="group relative text-gray-300 transition hover:text-blue-300">
+              <Link
+                to="/recomendacoes"
+                className="group relative text-gray-300 transition hover:text-blue-300"
+              >
                 recomendações
-                <span className="absolute -bottom-2 left-0 h-[3px] w-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-2 left-0 h-[3px] w-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full" />
               </Link>
             </li>
 
@@ -45,7 +54,7 @@ export default function Header() {
                 className="group relative cursor-pointer text-gray-300 transition hover:text-blue-300"
               >
                 sobre
-                <span className="absolute -bottom-2 left-0 h-[3px] w-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-2 left-0 h-[3px] w-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full" />
               </button>
             </li>
           </ul>
