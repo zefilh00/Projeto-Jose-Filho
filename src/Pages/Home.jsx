@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../Components/Header.jsx";
+import Footer from "../Components/Footer.jsx";
 
 export default function Home() {
   return (
