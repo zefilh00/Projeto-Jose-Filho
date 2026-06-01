@@ -1,5 +1,9 @@
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
+import ProdutoCard from "../Components/ProdutoCard.jsx";
+import VideoCard from "../Components/VideoCard.jsx";
+import { produtos } from "../data/produtos.js";
+import { videos } from "../data/videos.js";
 
 export default function Home() {
   return (
@@ -31,13 +35,72 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="mx-auto mt-24 max-w-7xl">
+          <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+            <div className="inline-block">
+              <h2 className="text-4xl font-light tracking-wide text-blue-100 md:text-5xl">
+                Recomendações
+              </h2>
+
+              <div className="mt-3 h-1 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+            </div>
+
+            <a
+              href="/recomendacoes"
+              className="rounded-2xl border border-blue-500/50 bg-[#0b1020] px-8 py-3 text-blue-100 transition duration-300 hover:border-blue-400 hover:bg-blue-500/10 hover:shadow-[0_0_20px_rgba(59,130,246,0.25)]"
+            >
+              Ver Todas →
+            </a>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {produtos.slice(0, 3).map((produto) => (
+              <ProdutoCard
+                key={produto.id}
+                produto={produto}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto mt-24 max-w-7xl">
+          <div className="mb-12">
+            <div className="inline-block">
+              <h2 className="text-4xl font-light tracking-wide text-blue-100 md:text-5xl">
+                Últimos Vídeos
+              </h2>
+
+              <div className="mt-3 h-1 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+            </div>
+
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-gray-300 md:text-xl">
+              Também tenho um canal voltado para gameplays com humor, onde
+              compartilho momentos divertidos, jogos variados e conteúdos mais
+              descontraídos.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {videos.slice(0, 3).map((video) => (
+              <VideoCard
+                key={video.id}
+                video={video}
+              />
+            ))}
+          </div>
+        </section>
+
         <section
           id="sobre"
-          className="mx-auto mt-20 max-w-7xl scroll-mt-40 md:mt-24 md:scroll-mt-32"
+          className="mx-auto mt-24 max-w-7xl scroll-mt-40 md:scroll-mt-32"
         >
-          <h2 className="mb-8 text-4xl font-light tracking-wide text-blue-100 md:mb-10 md:text-5xl">
-            Sobre José Filho
-          </h2>
+          <div className="mb-10 inline-block">
+            <h2 className="text-4xl font-light tracking-wide text-blue-100 md:text-5xl">
+              Sobre José Filho
+            </h2>
+
+            <div className="mt-3 h-1 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+          </div>
 
           <div className="relative overflow-hidden rounded-[2.5rem] border border-blue-500/70 bg-[#0b1020]/80 p-6 shadow-[0_0_35px_rgba(59,130,246,0.18)] md:rounded-[4rem] md:p-12">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-transparent to-purple-950/30" />
@@ -57,10 +120,7 @@ export default function Home() {
                 nerd. Sou um grande admirador da obra O Senhor dos Anéis, fã do
                 universo da DC Comics e apaixonado por jogos que marcaram
                 gerações, como os clássicos da franquia God of War e o lendário
-                The Elder Scrolls V: Skyrim. Essas histórias, personagens e
-                mundos fantásticos ajudaram a moldar minha criatividade, minha
-                forma de pensar e até mesmo minha visão sobre diversos temas do
-                cotidiano.
+                The Elder Scrolls V: Skyrim.
               </p>
 
               <p>
@@ -68,27 +128,20 @@ export default function Home() {
                 valorizando princípios como liberdade individual,
                 responsabilidade, livre mercado e limitação do poder estatal.
                 Acredito que o debate saudável de ideias é fundamental para uma
-                sociedade mais livre e desenvolvida, e por isso gosto de estudar
-                e acompanhar os acontecimentos políticos e econômicos do Brasil
-                e do mundo.
+                sociedade mais livre e desenvolvida.
               </p>
 
               <p>
                 Este site foi criado com o objetivo de compartilhar minhas
                 opiniões, análises e reflexões sobre temas relacionados à
                 política, tecnologia e assuntos que considero relevantes para a
-                sociedade atual. Aqui você encontrará artigos nos quais apresento
-                minhas perspectivas e argumentos sobre diferentes temas, sempre
-                buscando promover o debate e a troca de ideias.
+                sociedade atual.
               </p>
 
               <p>
                 Além disso, também publicarei conteúdos voltados para
                 recomendações de produtos, principalmente relacionados ao
-                universo da tecnologia. Seja um novo hardware, periférico,
-                notebook, smartphone ou qualquer outra novidade do mundo tech,
-                pretendo compartilhar minhas impressões e sugestões para ajudar
-                outras pessoas a fazerem escolhas mais informadas.
+                universo da tecnologia.
               </p>
 
               <p>
