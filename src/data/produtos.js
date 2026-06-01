@@ -3,7 +3,7 @@ export const produtos = [
     id: 1,
     categoria: "notebooks",
     nome: "Lenovo LOQ RTX 2050",
-    foto: "https://fujiokadistribuidor.vteximg.com.br/arquivos/ids/394349",
+    foto: "https://i.zst.com.br/thumbs/12/11/3c/-1238590494.jpg",
     descricao:
       "Notebook gamer de entrada com bom desempenho para estudos, programação, jogos leves e uso diário.",
   },
