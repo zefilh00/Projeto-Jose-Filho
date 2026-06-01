@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <Header />
 
-      <main className="min-h-screen bg-[#070b14] px-4 pt-28 pb-20 text-white md:px-6 md:pt-32 md:pb-24">
+      <main className="min-h-screen bg-[#070b14] px-4 pt-40 pb-20 text-white md:px-6 md:pt-32 md:pb-24">
         <section className="relative mx-auto flex min-h-[520px] max-w-7xl items-center justify-center overflow-hidden rounded-[3rem] border-2 border-blue-500/80 bg-[#0b1020] shadow-[0_0_40px_rgba(59,130,246,0.25)] md:rounded-[5rem]">
           <div
             className="absolute inset-0 scale-105 bg-cover bg-center opacity-35 blur-sm"
@@ -31,7 +31,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="sobre" className="mx-auto mt-20 max-w-7xl scroll-mt-28 md:mt-24 md:scroll-mt-32">
+        <section
+          id="sobre"
+          className="mx-auto mt-20 max-w-7xl scroll-mt-40 md:mt-24 md:scroll-mt-32"
+        >
           <h2 className="mb-8 text-4xl font-light tracking-wide text-blue-100 md:mb-10 md:text-5xl">
             Sobre José Filho
           </h2>
