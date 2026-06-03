@@ -25,7 +25,7 @@ export const produtos = [
 
     Se eu tivesse que resumir minha experiência em uma frase, seria: o Lenovo LOQ RTX 2050 não é o notebook gamer mais poderoso do mercado, mas é um equipamento extremamente equilibrado, confiável e capaz de entregar muito desempenho para quem quer estudar, trabalhar e jogar sem dor de cabeça.
   `,
-  linkProduto: "#",
+  linkProduto: "https://www.mercadolivre.com.br/notebook-gamer-lenovo-loq-intel-core-i5-12450h-8gb-512gb-ssd-rtx-2050-156-fhd-w11-83eu0000br-novo-com-caixa-aberta/p/MLB2022046683#polycard_client=search-desktop&be_origin=backend&search_layout=grid&position=1&type=product&tracking_id=0cd609d8-bf52-451b-8590-ee3d373a0e90&wid=MLB4657024925&sid=search",
 },
 
 {
@@ -54,7 +54,7 @@ export const produtos = [
 
     Se eu tivesse que resumir minha opinião em uma frase, seria: o Attack Shark R1 é um dos melhores mouses custo-benefício que já utilizei, oferecendo uma experiência excelente tanto para jogos quanto para produtividade sem exigir um investimento elevado.
   `,
-  linkProduto: "#",
+  linkProduto: "https://www.kabum.com.br/produto/903641/mouse-gamer-sem-fio-attack-shark-r1-18000-dpi-55g-tri-mode-sensor-paw3311-vermelho",
 },
 
 {
@@ -83,7 +83,7 @@ export const produtos = [
 
     Se eu tivesse que resumir minha experiência em uma frase, diria que o Mancer Ghoul MK3 é uma excelente porta de entrada para o mundo dos teclados mecânicos, oferecendo conforto, durabilidade e uma ótima experiência de uso sem exigir um investimento elevado.
   `,
-  linkProduto: "#",
+  linkProduto: "https://www.pichau.com.br/teclado-mecanico-mancer-ghoul-mk3-rgb-abnt2-switch-huano-vermelho-preto-mcr-ghm3-rgb01rd",
 },
 
 {
@@ -112,6 +112,6 @@ export const produtos = [
 
     Se eu tivesse que resumir minha experiência em uma frase, diria que o Rise Mode G1 é um headset honesto, confortável e confiável, sendo uma excelente opção para quem busca um periférico completo sem precisar gastar uma fortuna.
   `,
-  linkProduto: "#",
+  linkProduto: "https://www.kabum.com.br/produto/483202/headset-gamer-rise-mode-g1-drivers-50mm-p3-35mm-preto-rm-hs-g1-fb",
 },
 ];
