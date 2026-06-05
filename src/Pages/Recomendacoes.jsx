@@ -2,6 +2,7 @@ import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import ProdutoCard from "../Components/ProdutoCard.jsx";
 import { produtos } from "../data/produtos.js";
+import AdBanner from "../Components/AdBanner.jsx";
 
 export default function Recomendacoes() {
   const notebooks = produtos.filter(
@@ -31,6 +32,10 @@ export default function Recomendacoes() {
             </p>
           </div>
 
+          <div className="mb-20">
+            <AdBanner />
+          </div>
+
           <section className="mb-20">
             <div className="mb-10 inline-block">
               <h2 className="mb-2 text-left text-3xl font-light text-blue-100 md:text-4xl">
@@ -46,6 +51,10 @@ export default function Recomendacoes() {
               ))}
             </div>
           </section>
+
+          <div className="mb-20">
+            <AdBanner />
+          </div>
 
           <section>
             <div className="mb-10 inline-block">

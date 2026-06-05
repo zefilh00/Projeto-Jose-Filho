@@ -4,6 +4,7 @@ import ProdutoCard from "../Components/ProdutoCard.jsx";
 import VideoCard from "../Components/VideoCard.jsx";
 import { produtos } from "../data/produtos.js";
 import { videos } from "../data/videos.js";
+import AdBanner from "../Components/AdBanner.jsx";
 
 export default function Home() {
   return (
@@ -35,6 +36,10 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="mx-auto mt-16 max-w-7xl">
+          <AdBanner />
+        </section>
+
         <section className="mx-auto mt-24 max-w-7xl">
           <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div className="inline-block">
@@ -63,6 +68,10 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="mx-auto mt-16 max-w-7xl">
+          <AdBanner />
+        </section>
+
         <section className="mx-auto mt-24 max-w-7xl">
           <div className="mb-12">
             <div className="inline-block">
@@ -88,6 +97,10 @@ export default function Home() {
               />
             ))}
           </div>
+        </section>
+
+        <section className="mx-auto mt-16 max-w-7xl">
+          <AdBanner />
         </section>
 
         <section
@@ -157,6 +170,11 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <section className="mx-auto mt-16 max-w-7xl">
+          <AdBanner />
+        </section>
+
       </main>
 
       <Footer />

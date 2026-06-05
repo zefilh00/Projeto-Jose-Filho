@@ -1,6 +1,7 @@
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import { Link } from "react-router-dom";
+import AdBanner from "../Components/AdBanner.jsx";
 
 export default function Opinioes() {
   return (
@@ -8,6 +9,10 @@ export default function Opinioes() {
       <Header />
 
       <main className="min-h-screen bg-[#070b14] px-4 pt-40 pb-20 text-white md:px-6 md:pt-32 md:pb-24">
+        <section className="mx-auto mb-12 max-w-7xl">
+          <AdBanner />
+        </section>
+
         <section className="mx-auto flex min-h-[65vh] max-w-7xl items-center justify-center">
           <div className="relative overflow-hidden rounded-[2.5rem] border border-blue-500/60 bg-[#0b1020]/80 p-8 text-center shadow-[0_0_35px_rgba(59,130,246,0.18)] md:rounded-[4rem] md:p-14">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-950/25 via-transparent to-purple-950/35" />
@@ -44,6 +49,10 @@ export default function Opinioes() {
               </Link>
             </div>
           </div>
+        </section>
+
+        <section className="mx-auto mt-16 max-w-7xl">
+          <AdBanner />
         </section>
       </main>
 

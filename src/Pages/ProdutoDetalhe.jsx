@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import { produtos } from "../data/produtos.js";
+import AdBanner from "../Components/AdBanner.jsx";
 
 export default function ProdutoDetalhe() {
   const { id } = useParams();
@@ -45,6 +46,10 @@ export default function ProdutoDetalhe() {
           >
             ← Voltar para recomendações
           </Link>
+
+          <div className="mb-8">
+            <AdBanner />
+          </div>
 
           <div className="grid gap-10 rounded-[2.5rem] border border-blue-500/60 bg-[#0b1020]/80 p-6 shadow-[0_0_35px_rgba(59,130,246,0.18)] md:grid-cols-2 md:p-10">
             <div className="overflow-hidden rounded-[2rem] border border-blue-500/30 bg-[#070b14]">
@@ -94,6 +99,9 @@ export default function ProdutoDetalhe() {
               {produto.texto}
             </p>
           </section>
+          <div className="mt-12">
+            <AdBanner />
+          </div>
         </section>
       </main>
 
