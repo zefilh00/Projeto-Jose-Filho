@@ -121,9 +121,7 @@ E justamente por isso acredito que seu nome merece atenção nos próximos anos.
   data: "05/06/2026",
 
   texto: `
-# The Boys: Da Glória à Decadência Narrativa e Ideológica
-
-**Nota do autor:** Este texto representa a opinião pessoal de José Filho sobre a série The Boys. Os acontecimentos da série e as declarações dos criadores foram baseados em fontes públicas. As análises e conclusões apresentadas refletem exclusivamente a visão do autor.
+Nota do autor: Este texto representa a opinião pessoal de José Filho sobre a série The Boys. Os acontecimentos da série e as declarações dos criadores foram baseados em fontes públicas. As análises e conclusões apresentadas refletem exclusivamente a visão do autor.
 
 Sou um grande fã de The Boys.
 
