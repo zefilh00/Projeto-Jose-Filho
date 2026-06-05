@@ -105,4 +105,172 @@ E justamente por isso acredito que seu nome merece atenção nos próximos anos.
       },
     ],
   },
+
+{
+  id: 2,
+  categoria: "geek",
+
+  titulo: "The Boys: Da Glória à Decadência Narrativa e Ideológica",
+
+  imagem:
+    "https://sm.ign.com/t/ign_br/screenshot/default/the-boys-season-4_xytb.1280.jpg",
+
+  resumo:
+    "Como fã da série desde as primeiras temporadas, analiso a evolução de The Boys e os motivos que me fazem acreditar que a obra perdeu parte de sua força narrativa ao priorizar cada vez mais sua mensagem política.",
+
+  data: "05/06/2026",
+
+  texto: `
+# The Boys: Da Glória à Decadência Narrativa e Ideológica
+
+**Nota do autor:** Este texto representa a opinião pessoal de José Filho sobre a série The Boys. Os acontecimentos da série e as declarações dos criadores foram baseados em fontes públicas. As análises e conclusões apresentadas refletem exclusivamente a visão do autor.
+
+Sou um grande fã de The Boys.
+
+Conheci a série através de um episódio do Moída Cast, podcast do canal Carne Moída TV. Na época, ouvi os participantes comentando sobre a proposta da série, seus personagens e a forma como ela desconstruía a imagem tradicional dos super-heróis. A conversa despertou minha curiosidade e resolvi assistir.
+
+Foi amor à primeira vista.
+
+A proposta era diferente de tudo que eu havia visto até então. Em vez de heróis inspiradores salvando o mundo, The Boys mostrava uma realidade onde pessoas com poderes seriam tão corruptas, egoístas e perigosas quanto qualquer outro ser humano.
+
+Depois de terminar as primeiras temporadas, também procurei vídeos resumindo os quadrinhos de Garth Ennis para entender melhor as inspirações da obra. Nunca cheguei a ler os quadrinhos completos, mas consumi bastante conteúdo sobre eles e suas diferenças em relação à adaptação da Amazon.
+
+Por isso mesmo, acredito que posso afirmar algo sem medo de errar: The Boys sempre foi política.
+
+Desde a primeira temporada era evidente que a série possuía críticas sociais e políticas, muitas delas direcionadas ao conservadorismo americano, ao nacionalismo exagerado, à manipulação midiática e ao culto à personalidade.
+
+E isso nunca foi um problema.
+
+Pelo contrário.
+
+Boa parte do sucesso inicial da série veio justamente da forma inteligente como essas críticas eram inseridas na narrativa.
+
+As mensagens estavam lá, mas serviam à história.
+
+A série confiava na inteligência do espectador.
+
+O público conseguia perceber as analogias, interpretar os personagens e tirar suas próprias conclusões.
+
+As primeiras temporadas equilibravam humor, violência, crítica social e desenvolvimento de personagens de forma brilhante.
+
+A própria Vought era um dos melhores exemplos disso.
+
+Mais do que uma empresa fictícia, ela funcionava como uma crítica ao corporativismo, ao poder das grandes marcas, à indústria do entretenimento e à forma como empresas conseguem controlar narrativas públicas.
+
+Para mim, a Vought sempre foi a verdadeira grande vilã da série.
+
+A terceira temporada começou a alterar um pouco essa dinâmica.
+
+Mesmo sendo uma excelente temporada e provavelmente minha favorita, já era possível perceber que as mensagens políticas estavam se tornando mais explícitas.
+
+Ainda assim, a qualidade da narrativa permanecia altíssima.
+
+Soldier Boy foi um dos personagens mais interessantes da série.
+
+Herogasm entregou um dos episódios mais memoráveis da televisão recente.
+
+O confronto entre Soldier Boy, Capitão Pátria e Billy Bruto foi espetacular.
+
+Tudo funcionava.
+
+Mas a partir da quarta temporada, algo mudou.
+
+E foi aí que comecei a sentir que The Boys estava perdendo parte daquilo que a tornou especial.
+
+A introdução da personagem Firecracker talvez seja o maior símbolo dessa mudança.
+
+O próprio Eric Kripke confirmou em entrevistas que a personagem foi inspirada em figuras políticas americanas como Marjorie Taylor Greene, Lauren Boebert e Laura Loomer.
+
+Ou seja, não estamos falando de interpretação dos fãs.
+
+O objetivo da personagem era realmente funcionar como uma representação direta desse tipo de figura política.
+
+O problema, para mim, não é a crítica.
+
+O problema é a forma.
+
+Enquanto personagens como Capitão Pátria e Stormfront funcionavam em múltiplos níveis narrativos, Firecracker frequentemente parece existir apenas para transmitir uma mensagem específica.
+
+Em muitos momentos tive a sensação de que a série deixou de confiar na capacidade de interpretação do público.
+
+As metáforas deixaram de ser metáforas.
+
+As críticas deixaram de estar nas entrelinhas.
+
+Tudo passou a ser explicado de forma extremamente direta.
+`,
+
+  fontes: [
+    {
+      subtitulo: "Podcast que me apresentou a série",
+      links: [
+        {
+          titulo: "Moída Cast – The Boys",
+          url: "https://open.spotify.com/episode/4GRfS1kdFhQjoHXQCJImUt",
+        },
+      ],
+    },
+
+    {
+      subtitulo:
+        "Sobre a evolução política da série e declarações de Eric Kripke",
+      links: [
+        {
+          titulo:
+            "Vulture – The Boys Creator Eric Kripke Isn't Trying to Predict the Future",
+          url: "https://www.vulture.com/article/the-boys-eric-kripke-season-4-interview.html",
+        },
+        {
+          titulo:
+            "Vulture – Eric Kripke Is Clear About Whose Side The Boys Is On",
+          url: "https://www.vulture.com/article/the-boys-eric-kripke-season-3-finale-interview.html",
+        },
+      ],
+    },
+
+    {
+      subtitulo: "Sobre Firecracker e suas inspirações",
+      links: [
+        {
+          titulo: "Vulture – Entrevista com Eric Kripke sobre Firecracker",
+          url: "https://www.vulture.com/article/the-boys-eric-kripke-season-4-interview.html",
+        },
+      ],
+    },
+
+    {
+      subtitulo: "Sobre críticas à quarta temporada",
+      links: [
+        {
+          titulo: "Collider – The Boys Season 4 Review",
+          url: "https://collider.com/the-boys-season-4-review/",
+        },
+        {
+          titulo: "Vanity Fair – The Boys Is Bleaker Than Ever in Season 4",
+          url: "https://www.vanityfair.com/hollywood/story/the-boys-season-four-amazon-review",
+        },
+        {
+          titulo: "Le Monde – Da crítica aos super-heróis à sátira política",
+          url: "https://www.lemonde.fr/culture/article/2024/06/18/the-boys-saison-4-sur-prime-de-la-critique-des-super-heros-a-la-satire-politique_6241105_3246.html",
+        },
+      ],
+    },
+
+    {
+      subtitulo: "Discussões da comunidade",
+      links: [
+        {
+          titulo:
+            "CharacterRant – The Boys Is Largely Prioritizing Quantity Over Quality",
+          url: "https://www.reddit.com/r/CharacterRant/comments/1dgrljd/the_boys_is_largely_prioritizing_quantity_over/",
+        },
+        {
+          titulo:
+            "CharacterRant – The Boys Is an Unintentional Satire of Itself",
+          url: "https://www.reddit.com/r/CharacterRant/comments/1l9y2jc/the_boys_is_an_unintentional_satire_of_itself/",
+        },
+      ],
+    },
+  ],
+}
 ];
