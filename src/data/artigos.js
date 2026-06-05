@@ -118,6 +118,8 @@ E justamente por isso acredito que seu nome merece atenção nos próximos anos.
   resumo:
     "Como fã da série desde as primeiras temporadas, analiso a evolução de The Boys e os motivos que me fazem acreditar que a obra perdeu parte de sua força narrativa ao priorizar cada vez mais sua mensagem política.",
 
+  autor: "José Filho",
+  
   data: "05/06/2026",
 
   texto: `
