@@ -113,7 +113,7 @@ E justamente por isso acredito que seu nome merece atenção nos próximos anos.
   titulo: "The Boys: Da Glória à Decadência Narrativa e Ideológica",
 
   imagem:
-    "https://sm.ign.com/t/ign_br/screenshot/default/the-boys-season-4_xytb.1280.jpg",
+    "https://vestibulares.estrategia.com/portal/wp-content/uploads/2022/07/the-boys-6.jpg",
 
   resumo:
     "Como fã da série desde as primeiras temporadas, analiso a evolução de The Boys e os motivos que me fazem acreditar que a obra perdeu parte de sua força narrativa ao priorizar cada vez mais sua mensagem política.",
