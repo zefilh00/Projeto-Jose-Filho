@@ -1,9 +1,7 @@
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import ProdutoCard from "../Components/ProdutoCard.jsx";
-import VideoCard from "../Components/VideoCard.jsx";
 import { produtos } from "../data/produtos.js";
-import { videos } from "../data/videos.js";
 import AdBanner from "../Components/AdBanner.jsx";
 
 export default function Home() {
@@ -63,37 +61,6 @@ export default function Home() {
               <ProdutoCard
                 key={produto.id}
                 produto={produto}
-              />
-            ))}
-          </div>
-        </section>
-
-        <section className="mx-auto mt-16 max-w-7xl">
-          <AdBanner />
-        </section>
-
-        <section className="mx-auto mt-24 max-w-7xl">
-          <div className="mb-12">
-            <div className="inline-block">
-              <h2 className="text-4xl font-light tracking-wide text-blue-100 md:text-5xl">
-                Últimos Vídeos
-              </h2>
-
-              <div className="mt-3 h-1 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
-            </div>
-
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-gray-300 md:text-xl">
-              Também tenho um canal voltado para gameplays com humor, onde
-              compartilho momentos divertidos, jogos variados e conteúdos mais
-              descontraídos.
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {videos.slice(0, 3).map((video) => (
-              <VideoCard
-                key={video.id}
-                video={video}
               />
             ))}
           </div>
