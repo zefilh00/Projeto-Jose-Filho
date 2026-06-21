@@ -1,13 +1,50 @@
 import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
-import { produtos } from "../data/produtos.js";
 import AdBanner from "../Components/AdBanner.jsx";
+import { supabase } from "../lib/supabase.js";
 
 export default function ProdutoDetalhe() {
   const { id } = useParams();
 
-  const produto = produtos.find((item) => item.id === Number(id));
+  const [produto, setProduto] = useState(null);
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    async function carregarProduto() {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("id", Number(id))
+        .eq("publicado", true)
+        .single();
+
+      if (error) {
+        console.log(error);
+      } else {
+        setProduto(data);
+      }
+
+      setCarregando(false);
+    }
+
+    carregarProduto();
+  }, [id]);
+
+  if (carregando) {
+    return (
+      <>
+        <Header />
+
+        <main className="flex min-h-screen items-center justify-center bg-[#070b14] text-white">
+          <p className="text-blue-100">Carregando produto...</p>
+        </main>
+
+        <Footer />
+      </>
+    );
+  }
 
   if (!produto) {
     return (
@@ -54,9 +91,12 @@ export default function ProdutoDetalhe() {
           <div className="grid gap-10 rounded-[2.5rem] border border-blue-500/60 bg-[#0b1020]/80 p-6 shadow-[0_0_35px_rgba(59,130,246,0.18)] md:grid-cols-2 md:p-10">
             <div className="overflow-hidden rounded-[2rem] border border-blue-500/30 bg-[#070b14]">
               <img
-                src={produto.foto}
+                src={
+                  produto.imagem ||
+                  "https://placehold.co/800x450/070b14/ffffff?text=Produto"
+                }
                 alt={produto.nome}
-                className="h-full min-h-[320px] w-full object-cover"
+                className="h-full min-h-[320px] w-full object-contain p-4"
               />
             </div>
 
@@ -76,12 +116,12 @@ export default function ProdutoDetalhe() {
               </p>
 
               <a
-                href={produto.linkProduto}
+                href={produto.link_produto || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 w-fit rounded-2xl border border-blue-500/50 bg-blue-500/10 px-8 py-3 text-blue-100 transition hover:border-blue-400 hover:bg-blue-500/20 hover:shadow-[0_0_20px_rgba(59,130,246,0.25)]"
               >
-                Ver produto 
+                Ver produto
               </a>
             </div>
           </div>
@@ -95,10 +135,16 @@ export default function ProdutoDetalhe() {
               <div className="mt-3 h-1 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
             </div>
 
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-300 md:text-xl">
-              {produto.texto}
-            </p>
+            <div className="space-y-6 text-base leading-relaxed text-gray-300 md:text-xl">
+              {produto.texto
+                ?.trim()
+                .split("\n\n")
+                .map((paragrafo, index) => (
+                  <p key={index}>{paragrafo.trim()}</p>
+                ))}
+            </div>
           </section>
+
           <div className="mt-12">
             <AdBanner />
           </div>

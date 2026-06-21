@@ -1,28 +1,43 @@
 import { Link } from "react-router-dom";
 
 export default function ArtigoCard({ artigo }) {
+  const dataFormatada = artigo.created_at
+    ? new Date(artigo.created_at).toLocaleDateString("pt-BR")
+    : "";
+
   return (
     <article className="group overflow-hidden rounded-[2rem] border border-blue-500/40 bg-[#0b1020]/80 shadow-[0_0_25px_rgba(59,130,246,0.12)] transition duration-300 hover:-translate-y-2 hover:border-blue-400/80 hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]">
       <div className="h-56 overflow-hidden bg-[#070b14]">
         <img
-          src={artigo.imagem}
+          src={
+            artigo.imagem ||
+            "https://placehold.co/800x450/070b14/ffffff?text=Artigo"
+          }
           alt={artigo.titulo}
           className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
         />
       </div>
 
       <div className="space-y-4 p-6">
-        <span className="inline-block rounded-full border border-blue-500/40 px-4 py-1 text-xs uppercase tracking-[0.25em] text-blue-200">
-          {artigo.categoria}
-        </span>
+        <div className="flex items-center justify-between gap-3">
+          <span className="inline-block rounded-full border border-blue-500/40 px-4 py-1 text-xs uppercase tracking-[0.25em] text-blue-200">
+            {artigo.categoria}
+          </span>
 
-        <h3 className="text-2xl font-light text-blue-100">
+          {dataFormatada && (
+            <span className="text-xs text-gray-400">
+              {dataFormatada}
+            </span>
+          )}
+        </div>
+
+        <h3 className="line-clamp-2 text-2xl font-light text-blue-100">
           {artigo.titulo}
         </h3>
 
         <div className="h-1 w-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
 
-        <p className="text-base leading-relaxed text-gray-300">
+        <p className="line-clamp-4 text-base leading-relaxed text-gray-300">
           {artigo.resumo}
         </p>
 
@@ -30,7 +45,7 @@ export default function ArtigoCard({ artigo }) {
           to={`/opinioes/${artigo.id}`}
           className="inline-block rounded-xl border border-blue-500/50 px-5 py-2 text-sm text-blue-100 transition hover:border-blue-400 hover:bg-blue-500/10"
         >
-          Ler artigo
+          Ler artigo →
         </Link>
       </div>
     </article>

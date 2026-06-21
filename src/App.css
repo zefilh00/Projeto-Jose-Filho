@@ -5,3 +5,23 @@
 html {
   scroll-behavior: smooth;
 }
+
+.input-admin {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  background: #070b14;
+  padding: 0.9rem 1.2rem;
+  color: white;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-admin:focus {
+  border-color: rgba(96, 165, 250, 0.9);
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.18);
+}
+
+.input-admin::placeholder {
+  color: rgba(156, 163, 175, 0.8);
+}

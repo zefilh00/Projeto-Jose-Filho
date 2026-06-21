@@ -1,10 +1,34 @@
+import { useEffect, useState } from "react";
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import ArtigoCard from "../Components/ArtigoCard.jsx";
 import AdBanner from "../Components/AdBanner.jsx";
-import { artigos } from "../data/artigos.js";
+import { supabase } from "../lib/supabase.js";
 
 export default function Opinioes() {
+  const [artigos, setArtigos] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    async function carregarArtigos() {
+      const { data, error } = await supabase
+        .from("articles")
+        .select("*")
+        .eq("publicado", true)
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.log(error);
+      } else {
+        setArtigos(data);
+      }
+
+      setCarregando(false);
+    }
+
+    carregarArtigos();
+  }, []);
+
   const politica = artigos.filter((artigo) => artigo.categoria === "politica");
   const tecnologia = artigos.filter(
     (artigo) => artigo.categoria === "tecnologia"
@@ -30,81 +54,55 @@ export default function Opinioes() {
             </p>
           </div>
 
-          <div className="mb-20">
-            <AdBanner />
-          </div>
+          {carregando ? (
+            <p className="text-center text-blue-100">Carregando artigos...</p>
+          ) : (
+            <>
+              <Categoria titulo="Política" artigos={politica} />
 
-          <section className="mb-20">
-            <div className="mb-10 inline-block">
-              <h2 className="mb-2 text-3xl font-light text-blue-100 md:text-4xl">
-                Política
-              </h2>
-
-              <div className="h-1 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
-            </div>
-
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {politica.map((artigo) => (
-                <ArtigoCard key={artigo.id} artigo={artigo} />
-              ))}
-            </div>
-          </section>
-
-          <div className="mb-20">
-            <AdBanner />
-          </div>
-
-          <section className="mb-20">
-            <div className="mb-10 inline-block">
-              <h2 className="mb-2 text-3xl font-light text-blue-100 md:text-4xl">
-                Tecnologia
-              </h2>
-
-              <div className="h-1 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
-            </div>
-
-            {tecnologia.length === 0 ? (
-              <p className="text-gray-400">
-                Em breve, artigos de tecnologia aparecerão aqui.
-              </p>
-            ) : (
-              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {tecnologia.map((artigo) => (
-                  <ArtigoCard key={artigo.id} artigo={artigo} />
-                ))}
+              <div className="mb-20">
+                <AdBanner />
               </div>
-            )}
-          </section>
 
-          <div className="mb-20">
-            <AdBanner />
-          </div>
+              <Categoria titulo="Tecnologia" artigos={tecnologia} />
 
-          <section>
-            <div className="mb-10 inline-block">
-              <h2 className="mb-2 text-3xl font-light text-blue-100 md:text-4xl">
-                Geek
-              </h2>
-
-              <div className="h-1 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
-            </div>
-
-            {geek.length === 0 ? (
-              <p className="text-gray-400">
-                Em breve, artigos sobre cultura geek aparecerão aqui.
-              </p>
-            ) : (
-              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {geek.map((artigo) => (
-                  <ArtigoCard key={artigo.id} artigo={artigo} />
-                ))}
+              <div className="mb-20">
+                <AdBanner />
               </div>
-            )}
-          </section>
+
+              <Categoria titulo="Geek" artigos={geek} />
+            </>
+          )}
         </section>
       </main>
 
       <Footer />
     </>
+  );
+}
+
+function Categoria({ titulo, artigos }) {
+  return (
+    <section className="mb-20">
+      <div className="mb-10 inline-block">
+        <h2 className="mb-2 text-3xl font-light text-blue-100 md:text-4xl">
+          {titulo}
+        </h2>
+
+        <div className="h-1 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+      </div>
+
+      {artigos.length === 0 ? (
+        <p className="text-gray-400">
+          Em breve, artigos dessa categoria aparecerão aqui.
+        </p>
+      ) : (
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {artigos.map((artigo) => (
+            <ArtigoCard key={artigo.id} artigo={artigo} />
+          ))}
+        </div>
+      )}
+    </section>
   );
 }

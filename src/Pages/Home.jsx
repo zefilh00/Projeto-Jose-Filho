@@ -1,10 +1,37 @@
+import { useEffect, useState } from "react";
+
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import ProdutoCard from "../Components/ProdutoCard.jsx";
-import { produtos } from "../data/produtos.js";
 import AdBanner from "../Components/AdBanner.jsx";
 
+import { supabase } from "../lib/supabase.js";
+
 export default function Home() {
+  const [produtos, setProdutos] = useState([]);
+  const [carregandoProdutos, setCarregandoProdutos] = useState(true);
+
+  useEffect(() => {
+    async function carregarProdutos() {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("publicado", true)
+        .order("created_at", { ascending: false })
+        .limit(3);
+
+      if (error) {
+        console.log(error);
+      } else {
+        setProdutos(data || []);
+      }
+
+      setCarregandoProdutos(false);
+    }
+
+    carregarProdutos();
+  }, []);
+
   return (
     <>
       <Header />
@@ -52,18 +79,23 @@ export default function Home() {
               href="/recomendacoes"
               className="rounded-2xl border border-blue-500/50 bg-[#0b1020] px-8 py-3 text-blue-100 transition duration-300 hover:border-blue-400 hover:bg-blue-500/10 hover:shadow-[0_0_20px_rgba(59,130,246,0.25)]"
             >
-              Ver Todas →
+              Ver Todas 
             </a>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {produtos.slice(0, 3).map((produto) => (
-              <ProdutoCard
-                key={produto.id}
-                produto={produto}
-              />
-            ))}
-          </div>
+          {carregandoProdutos ? (
+            <p className="text-blue-100">Carregando recomendações...</p>
+          ) : produtos.length === 0 ? (
+            <p className="text-gray-400">
+              Em breve, recomendações aparecerão aqui.
+            </p>
+          ) : (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {produtos.map((produto) => (
+                <ProdutoCard key={produto.id} produto={produto} />
+              ))}
+            </div>
+          )}
         </section>
 
         <section className="mx-auto mt-16 max-w-7xl">
@@ -141,7 +173,6 @@ export default function Home() {
         <section className="mx-auto mt-16 max-w-7xl">
           <AdBanner />
         </section>
-
       </main>
 
       <Footer />

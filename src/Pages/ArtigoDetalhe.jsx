@@ -1,13 +1,50 @@
 import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import AdBanner from "../Components/AdBanner.jsx";
-import { artigos } from "../data/artigos.js";
+import { supabase } from "../lib/supabase.js";
 
 export default function ArtigoDetalhe() {
   const { id } = useParams();
 
-  const artigo = artigos.find((item) => item.id === Number(id));
+  const [artigo, setArtigo] = useState(null);
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    async function carregarArtigo() {
+      const { data, error } = await supabase
+        .from("articles")
+        .select("*")
+        .eq("id", Number(id))
+        .eq("publicado", true)
+        .single();
+
+      if (error) {
+        console.log(error);
+      } else {
+        setArtigo(data);
+      }
+
+      setCarregando(false);
+    }
+
+    carregarArtigo();
+  }, [id]);
+
+  if (carregando) {
+    return (
+      <>
+        <Header />
+
+        <main className="flex min-h-screen items-center justify-center bg-[#070b14] text-white">
+          <p className="text-blue-100">Carregando artigo...</p>
+        </main>
+
+        <Footer />
+      </>
+    );
+  }
 
   if (!artigo) {
     return (
@@ -34,6 +71,10 @@ export default function ArtigoDetalhe() {
     );
   }
 
+  const dataFormatada = new Date(artigo.created_at).toLocaleDateString(
+    "pt-BR"
+  );
+
   return (
     <>
       <Header />
@@ -52,13 +93,15 @@ export default function ArtigoDetalhe() {
           </div>
 
           <div className="overflow-hidden rounded-[2.5rem] border border-blue-500/50 bg-[#0b1020]/80 shadow-[0_0_35px_rgba(59,130,246,0.18)]">
-            <div className="bg-[#070b14]">
-              <img
-                src={artigo.imagem}
-                alt={artigo.titulo}
-                className="h-[500px] w-full object-contain"
-              />
-            </div>
+            {artigo.imagem && (
+              <div className="bg-[#070b14] p-4">
+                <img
+                  src={artigo.imagem}
+                  alt={artigo.titulo}
+                  className="mx-auto max-h-[600px] w-full object-contain"
+                />
+              </div>
+            )}
 
             <div className="p-6 md:p-10">
               <span className="mb-5 inline-block rounded-full border border-blue-500/40 px-4 py-1 text-sm uppercase tracking-[0.25em] text-blue-200">
@@ -72,15 +115,15 @@ export default function ArtigoDetalhe() {
               <div className="my-6 h-1 w-40 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
 
               <p className="text-sm uppercase tracking-[0.2em] text-gray-400">
-                Por {artigo.autor} • {artigo.data}
+                Por {artigo.autor || "José Filho"} • {dataFormatada}
               </p>
             </div>
           </div>
 
           <section className="mt-12 rounded-[2.5rem] border border-blue-500/40 bg-[#0b1020]/70 p-6 shadow-[0_0_25px_rgba(59,130,246,0.12)] md:p-10">
             <div className="space-y-6 text-base leading-relaxed text-gray-300 md:text-xl">
-              {artigo.texto
-                .trim()
+              {artigo.conteudo
+                ?.trim()
                 .split("\n\n")
                 .map((paragrafo, index) => (
                   <p key={index}>{paragrafo.trim()}</p>
@@ -92,45 +135,10 @@ export default function ArtigoDetalhe() {
             <AdBanner />
           </div>
 
-          <section className="mt-12 rounded-[2.5rem] border border-blue-500/40 bg-[#0b1020]/70 p-6 shadow-[0_0_25px_rgba(59,130,246,0.12)] md:p-10">
-            <div className="mb-8 inline-block">
-              <h2 className="text-3xl font-light text-blue-100 md:text-4xl">
-                Fontes
-              </h2>
-
-              <div className="mt-3 h-1 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
-            </div>
-
-            <div className="space-y-8">
-              {artigo.fontes.map((grupo, index) => (
-                <div key={index}>
-                  <h3 className="mb-4 text-xl font-light text-blue-200 md:text-2xl">
-                    {grupo.subtitulo}
-                  </h3>
-
-                  <div className="space-y-3">
-                    {grupo.links.map((fonte, fonteIndex) => (
-                      <a
-                        key={fonteIndex}
-                        href={fonte.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block rounded-2xl border border-blue-500/30 bg-[#070b14]/70 p-4 text-blue-300 transition hover:border-blue-400 hover:bg-blue-500/10"
-                      >
-                        {fonte.titulo}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
           <div className="mt-12 rounded-[2rem] border border-purple-500/40 bg-purple-950/20 p-6 text-gray-300">
             <p>
               As opiniões expressas neste artigo são de responsabilidade
-              exclusiva do autor. As fontes acima foram utilizadas para
-              contextualização histórica, política e eleitoral.
+              exclusiva do autor.
             </p>
           </div>
         </article>
