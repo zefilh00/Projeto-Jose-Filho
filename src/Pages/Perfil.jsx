@@ -329,7 +329,7 @@ export default function Perfil() {
                     onClick={apagarConta}
                     className="w-full rounded-2xl border border-red-500/50 px-6 py-3 text-red-300 transition hover:bg-red-500/10"
                   >
-                    Apagar perfil
+                    Apagar perfil público
                   </button>
                 </div>
               </div>
