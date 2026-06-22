@@ -15,7 +15,11 @@ export default function Registro() {
 
   async function criarConta(e) {
     e.preventDefault();
+
+    if (carregando) return;
+
     setCarregando(true);
+    toast.dismiss();
 
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -23,7 +27,8 @@ export default function Registro() {
     });
 
     if (error) {
-      toast.error("Erro ao criar conta. Tente outro email ou senha.");
+      console.log("Erro no cadastro:", error);
+      toast.error(error.message || "Erro ao criar conta.");
       setCarregando(false);
       return;
     }
@@ -37,14 +42,19 @@ export default function Registro() {
       });
 
       if (profileError) {
-        toast.error("Conta criada, mas houve erro ao criar o perfil.");
+        console.log("Erro ao criar perfil:", profileError);
+        toast.error(profileError.message || "Erro ao criar perfil.");
         setCarregando(false);
         return;
       }
     }
 
     toast.success("Conta criada com sucesso!");
-    setTimeout(() => navigate("/login"), 1000);
+    setCarregando(false);
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
   }
 
   return (
@@ -94,8 +104,9 @@ export default function Registro() {
               />
 
               <button
+                type="submit"
                 disabled={carregando}
-                className="w-full rounded-2xl border border-purple-500/50 bg-purple-500/10 px-8 py-3 text-blue-100 transition hover:bg-purple-500/20"
+                className="w-full rounded-2xl border border-purple-500/50 bg-purple-500/10 px-8 py-3 text-blue-100 transition hover:bg-purple-500/20 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {carregando ? "Criando conta..." : "Registrar"}
               </button>
