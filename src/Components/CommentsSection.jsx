@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 import { supabase } from "../lib/supabase.js";
-
 
 const perfilIcone = "https://cdn-icons-png.flaticon.com/128/3963/3963065.png";
 
@@ -36,7 +36,7 @@ export default function CommentsSection({ targetType, targetId }) {
       .order("created_at", { ascending: true });
 
     if (error) {
-      console.log("Erro ao carregar comentários:", error);
+      toast.error("Erro ao carregar comentários.");
       return;
     }
 
@@ -48,22 +48,18 @@ export default function CommentsSection({ targetType, targetId }) {
     ];
 
     if (idsUsuarios.length > 0) {
-      const { data: perfisData, error: perfisError } = await supabase
+      const { data: perfisData } = await supabase
         .from("profiles")
         .select("id, nome, avatar_url")
         .in("id", idsUsuarios);
 
-      if (perfisError) {
-        console.log("Erro ao carregar perfis:", perfisError);
-      } else {
-        const mapaPerfis = {};
+      const mapaPerfis = {};
 
-        (perfisData || []).forEach((perfil) => {
-          mapaPerfis[perfil.id] = perfil;
-        });
+      (perfisData || []).forEach((perfil) => {
+        mapaPerfis[perfil.id] = perfil;
+      });
 
-        setPerfis(mapaPerfis);
-      }
+      setPerfis(mapaPerfis);
     } else {
       setPerfis({});
     }
@@ -71,16 +67,12 @@ export default function CommentsSection({ targetType, targetId }) {
     const idsComentarios = listaComentarios.map((comentario) => comentario.id);
 
     if (idsComentarios.length > 0) {
-      const { data: votosData, error: votosError } = await supabase
+      const { data: votosData } = await supabase
         .from("comment_votes")
         .select("*")
         .in("comment_id", idsComentarios);
 
-      if (votosError) {
-        console.log("Erro ao carregar votos:", votosError);
-      } else {
-        setVotos(votosData || []);
-      }
+      setVotos(votosData || []);
     } else {
       setVotos([]);
     }
@@ -99,11 +91,12 @@ export default function CommentsSection({ targetType, targetId }) {
     });
 
     if (error) {
-      console.log("Erro ao comentar:", error);
+      toast.error("Erro ao publicar comentário.");
       return;
     }
 
     setTexto("");
+    toast.success("Comentário publicado!");
     await carregarComentarios();
   }
 
@@ -119,12 +112,13 @@ export default function CommentsSection({ targetType, targetId }) {
     });
 
     if (error) {
-      console.log("Erro ao responder:", error);
+      toast.error("Erro ao responder comentário.");
       return;
     }
 
     setTextoResposta("");
     setRespostaAberta(null);
+    toast.success("Resposta enviada!");
     await carregarComentarios();
   }
 
@@ -140,12 +134,13 @@ export default function CommentsSection({ targetType, targetId }) {
       .eq("id", id);
 
     if (error) {
-      console.log("Erro ao editar comentário:", error);
+      toast.error("Erro ao editar comentário.");
       return;
     }
 
     setEditandoId(null);
     setTextoEditado("");
+    toast.success("Comentário atualizado!");
     await carregarComentarios();
   }
 
@@ -156,42 +151,37 @@ export default function CommentsSection({ targetType, targetId }) {
     const { error } = await supabase.from("comments").delete().eq("id", id);
 
     if (error) {
-      console.log("Erro ao apagar comentário:", error);
+      toast.error("Erro ao apagar comentário.");
       return;
     }
 
+    toast.success("Comentário apagado!");
     await carregarComentarios();
   }
 
   async function votar(commentId, voteType) {
-    if (!usuario) return;
+    if (!usuario) {
+      toast.error("Você precisa entrar para votar.");
+      return;
+    }
 
     const votoAtual = votos.find(
       (voto) => voto.comment_id === commentId && voto.user_id === usuario.id
     );
 
     if (votoAtual?.vote_type === voteType) {
-      const { error } = await supabase
-        .from("comment_votes")
-        .delete()
-        .eq("id", votoAtual.id);
-
-      if (error) console.log("Erro ao remover voto:", error);
+      await supabase.from("comment_votes").delete().eq("id", votoAtual.id);
     } else if (votoAtual) {
-      const { error } = await supabase
+      await supabase
         .from("comment_votes")
         .update({ vote_type: voteType })
         .eq("id", votoAtual.id);
-
-      if (error) console.log("Erro ao atualizar voto:", error);
     } else {
-      const { error } = await supabase.from("comment_votes").insert({
+      await supabase.from("comment_votes").insert({
         comment_id: commentId,
         user_id: usuario.id,
         vote_type: voteType,
       });
-
-      if (error) console.log("Erro ao votar:", error);
     }
 
     await carregarComentarios();
@@ -219,7 +209,7 @@ export default function CommentsSection({ targetType, targetId }) {
   }
 
   return (
-    <section className="mt-12 rounded-[2.5rem] border border-blue-500/40 bg-[#0b1020]/70 p-6 shadow-[0_0_25px_rgba(59,130,246,0.12)] md:p-10">
+    <section className="mt-12 overflow-hidden rounded-[2rem] border border-blue-500/40 bg-[#0b1020]/70 p-4 shadow-[0_0_25px_rgba(59,130,246,0.12)] sm:p-6 md:rounded-[2.5rem] md:p-10">
       <div className="mb-8 inline-block">
         <h2 className="text-3xl font-light text-blue-100 md:text-4xl">
           Comentários
@@ -309,21 +299,21 @@ function CommentItem({
   const dono = usuario?.id === comentario.user_id;
 
   return (
-    <div className="rounded-2xl border border-blue-500/25 bg-[#070b14]/70 p-5">
-      <div className="flex gap-4">
+    <div className="w-full overflow-hidden rounded-2xl border border-blue-500/25 bg-[#070b14]/70 p-4 sm:p-5">
+      <div className="flex w-full min-w-0 flex-col gap-4 sm:flex-row">
         <img
           src={perfil?.avatar_url || perfilIcone}
           alt="Perfil"
-          className="h-12 w-12 rounded-full border border-blue-500/40 object-cover"
+          className="h-14 w-14 shrink-0 rounded-full border border-blue-500/40 object-cover"
         />
 
-        <div className="flex-1">
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-            <h3 className="text-lg text-blue-100">
+        <div className="min-w-0 flex-1">
+          <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+            <h3 className="max-w-full break-words text-xl text-blue-100">
               {perfil?.nome || "Usuário"}
             </h3>
 
-            <span className="text-sm text-gray-500">
+            <span className="shrink-0 text-sm text-gray-500">
               {formatarData(comentario.created_at)}
             </span>
           </div>
@@ -336,7 +326,7 @@ function CommentItem({
                 className="input-admin min-h-[100px]"
               />
 
-              <div className="flex gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <button
                   type="button"
                   onClick={() => salvarEdicao(comentario.id)}
@@ -355,12 +345,12 @@ function CommentItem({
               </div>
             </div>
           ) : (
-            <p className="mt-3 whitespace-pre-line text-gray-300">
+            <p className="mt-4 max-w-full whitespace-pre-wrap break-words text-lg leading-relaxed text-gray-300">
               {comentario.content}
             </p>
           )}
 
-          <div className="mt-4 flex flex-wrap gap-3 text-sm">
+          <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
             <button
               type="button"
               onClick={() => votar(comentario.id, "like")}
@@ -435,7 +425,7 @@ function CommentItem({
           )}
 
           {respostas.length > 0 && (
-            <div className="mt-5 space-y-4 border-l border-blue-500/30 pl-4">
+            <div className="mt-6 space-y-4 border-l border-blue-500/30 pl-3 sm:pl-5">
               {respostas.map((resposta) => (
                 <CommentItem
                   key={resposta.id}
