@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Header from "../Components/Header.jsx";
@@ -7,6 +7,7 @@ import { supabase } from "../lib/supabase.js";
 
 export default function Registro() {
   const navigate = useNavigate();
+  const enviandoRef = useRef(false);
 
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -16,40 +17,49 @@ export default function Registro() {
   async function criarConta(e) {
     e.preventDefault();
 
-    if (carregando) return;
+    if (enviandoRef.current) return;
 
+    enviandoRef.current = true;
     setCarregando(true);
     toast.dismiss();
 
+    const emailLimpo = email.trim().toLowerCase();
+    const nomeLimpo = nome.trim();
+
     const { data, error } = await supabase.auth.signUp({
-      email,
+      email: emailLimpo,
       password: senha,
+      options: {
+        data: {
+          nome: nomeLimpo,
+        },
+      },
     });
 
     if (error) {
       console.log("Erro no cadastro:", error);
-      toast.error(error.message || "Erro ao criar conta.");
+
+      if (
+        error.status === 429 ||
+        error.message?.toLowerCase().includes("rate limit")
+      ) {
+        toast.error(
+          "Muitas tentativas de cadastro. Aguarde alguns minutos e tente novamente."
+        );
+      } else {
+        toast.error(error.message || "Erro ao criar conta.");
+      }
+
+      enviandoRef.current = false;
       setCarregando(false);
       return;
     }
 
-    if (data.user) {
-      const { error: profileError } = await supabase.from("profiles").insert({
-        id: data.user.id,
-        nome,
-        email,
-        role: "user",
-      });
-
-      if (profileError) {
-        console.log("Erro ao criar perfil:", profileError);
-        toast.error(profileError.message || "Erro ao criar perfil.");
-        setCarregando(false);
-        return;
-      }
-    }
-
     toast.success("Conta criada com sucesso!");
+
+    setNome("");
+    setEmail("");
+    setSenha("");
     setCarregando(false);
 
     setTimeout(() => {
