@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import { supabase } from "../lib/supabase.js";
 
-export default function AdminLogin() {
+export default function Login() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [carregando, setCarregando] = useState(false);
 
-  async function fazerLoginAdmin(e) {
+  async function fazerLogin(e) {
     e.preventDefault();
     setCarregando(true);
 
@@ -22,40 +22,36 @@ export default function AdminLogin() {
     });
 
     if (error) {
-      toast.error("Email ou senha de administrador inválidos.");
+      toast.error("Email ou senha inválidos.");
       setCarregando(false);
       return;
     }
 
-    toast.success("Login administrativo realizado!");
-    navigate("/admin");
+    toast.success("Login realizado com sucesso!");
+    navigate("/");
   }
 
   return (
     <>
       <Header />
 
-      <main className="min-h-screen bg-[#070b14] px-4 pt-40 pb-20 text-white md:px-6 md:pt-32 md:pb-24">
+      <main className="min-h-screen bg-[#070b14] px-4 pt-44 pb-20 text-white md:px-6 md:pt-36">
         <section className="mx-auto flex min-h-[65vh] max-w-7xl items-center justify-center">
           <div className="w-full max-w-xl rounded-[2.5rem] border border-blue-500/60 bg-[#0b1020]/80 p-8 shadow-[0_0_35px_rgba(59,130,246,0.18)] md:p-12">
-            <span className="mb-6 block text-center text-sm uppercase tracking-[0.3em] text-blue-300">
-              Acesso restrito
-            </span>
-
             <h1 className="text-center text-4xl font-light text-blue-100 md:text-5xl">
-              Login Admin
+              Entrar
             </h1>
 
-            <div className="mx-auto my-6 h-1 w-32 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+            <div className="mx-auto my-6 h-1 w-28 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
 
             <p className="mb-8 text-center text-gray-400">
-              Área exclusiva para administração do site.
+              Entre para comentar nos artigos e acessar seu perfil.
             </p>
 
-            <form onSubmit={fazerLoginAdmin} className="space-y-6">
+            <form onSubmit={fazerLogin} className="space-y-6">
               <input
                 type="email"
-                placeholder="Email do administrador"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="input-admin"
@@ -64,7 +60,7 @@ export default function AdminLogin() {
 
               <input
                 type="password"
-                placeholder="Senha do administrador"
+                placeholder="Senha"
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
                 className="input-admin"
@@ -72,13 +68,22 @@ export default function AdminLogin() {
               />
 
               <button
-                type="submit"
                 disabled={carregando}
-                className="w-full rounded-2xl border border-blue-500/50 bg-blue-500/10 px-8 py-3 text-blue-100 transition duration-300 hover:border-blue-400 hover:bg-blue-500/20"
+                className="w-full rounded-2xl border border-blue-500/50 bg-blue-500/10 px-8 py-3 text-blue-100 transition hover:bg-blue-500/20"
               >
-                {carregando ? "Verificando admin..." : "Entrar como admin"}
+                {carregando ? "Entrando..." : "Entrar"}
               </button>
             </form>
+
+            <p className="mt-8 text-center text-gray-400">
+              Ainda não tem conta?{" "}
+              <Link
+                to="/registro"
+                className="text-blue-300 hover:text-purple-300"
+              >
+                Criar conta
+              </Link>
+            </p>
           </div>
         </section>
       </main>

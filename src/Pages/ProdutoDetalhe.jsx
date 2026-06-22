@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import AdBanner from "../Components/AdBanner.jsx";
+import CommentsSection from "../Components/CommentsSection.jsx";
 import { supabase } from "../lib/supabase.js";
 
 export default function ProdutoDetalhe() {
@@ -144,6 +145,8 @@ export default function ProdutoDetalhe() {
                 ))}
             </div>
           </section>
+
+          <CommentsSection targetType="product" targetId={produto.id} />
 
           <div className="mt-12">
             <AdBanner />
