@@ -10,6 +10,9 @@ import Admin from "./Pages/Admin.jsx";
 import Login from "./Pages/Login.jsx";
 import Registro from "./Pages/Registro.jsx";
 import Perfil from "./Pages/Perfil.jsx";
+import PoliticaPrivacidade from "./Pages/Institucional/PoliticaPrivacidade.jsx";
+import TermosUso from "./Pages/Institucional/TermosUso.jsx";
+import NotFound from "./Pages/Errors/NotFound.jsx";
 
 export default function App() {
   return (
@@ -26,6 +29,9 @@ export default function App() {
         <Route path="/opinioes/:id" element={<ArtigoDetalhe />} />
         <Route path="/recomendacoes" element={<Recomendacoes />} />
         <Route path="/recomendacoes/:id" element={<ProdutoDetalhe />}/>
+        <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />}/>
+        <Route path="/termos-de-uso" element={<TermosUso />}/>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
