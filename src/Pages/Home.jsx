@@ -3,34 +3,56 @@ import { useEffect, useState } from "react";
 import Header from "../Components/Header.jsx";
 import Footer from "../Components/Footer.jsx";
 import ProdutoCard from "../Components/ProdutoCard.jsx";
+import ArtigoCard from "../Components/ArtigoCard.jsx";
 import AdBanner from "../Components/AdBanner.jsx";
 
 import { supabase } from "../lib/supabase.js";
 
 export default function Home() {
   const [produtos, setProdutos] = useState([]);
+  const [artigos, setArtigos] = useState([]);
+
   const [carregandoProdutos, setCarregandoProdutos] = useState(true);
+  const [carregandoArtigos, setCarregandoArtigos] = useState(true);
 
   useEffect(() => {
-    async function carregarProdutos() {
-      const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .eq("publicado", true)
-        .order("created_at", { ascending: false })
-        .limit(3);
+    carregarProdutos();
+    carregarArtigos();
+  }, []);
 
-      if (error) {
-        console.log(error);
-      } else {
-        setProdutos(data || []);
-      }
+  async function carregarProdutos() {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("publicado", true)
+      .order("created_at", { ascending: false })
+      .limit(3);
 
-      setCarregandoProdutos(false);
+    if (error) {
+      console.log(error);
+    } else {
+      setProdutos(data || []);
     }
 
-    carregarProdutos();
-  }, []);
+    setCarregandoProdutos(false);
+  }
+
+  async function carregarArtigos() {
+    const { data, error } = await supabase
+      .from("articles")
+      .select("*")
+      .eq("publicado", true)
+      .order("created_at", { ascending: false })
+      .limit(3);
+
+    if (error) {
+      console.log(error);
+    } else {
+      setArtigos(data || []);
+    }
+
+    setCarregandoArtigos(false);
+  }
 
   return (
     <>
@@ -69,6 +91,43 @@ export default function Home() {
           <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div className="inline-block">
               <h2 className="text-4xl font-light tracking-wide text-blue-100 md:text-5xl">
+                Últimos Artigos
+              </h2>
+
+              <div className="mt-3 h-1 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+            </div>
+
+            <a
+              href="/opinioes"
+              className="rounded-2xl border border-blue-500/50 bg-[#0b1020] px-8 py-3 text-blue-100 transition duration-300 hover:border-blue-400 hover:bg-blue-500/10 hover:shadow-[0_0_20px_rgba(59,130,246,0.25)]"
+            >
+              Ver Todos →
+            </a>
+          </div>
+
+          {carregandoArtigos ? (
+            <p className="text-blue-100">Carregando artigos...</p>
+          ) : artigos.length === 0 ? (
+            <p className="text-gray-400">
+              Em breve, artigos aparecerão aqui.
+            </p>
+          ) : (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {artigos.map((artigo) => (
+                <ArtigoCard key={artigo.id} artigo={artigo} />
+              ))}
+            </div>
+          )}
+        </section>
+
+        <section className="mx-auto mt-16 max-w-7xl">
+          <AdBanner />
+        </section>
+
+        <section className="mx-auto mt-24 max-w-7xl">
+          <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+            <div className="inline-block">
+              <h2 className="text-4xl font-light tracking-wide text-blue-100 md:text-5xl">
                 Recomendações
               </h2>
 
@@ -79,7 +138,7 @@ export default function Home() {
               href="/recomendacoes"
               className="rounded-2xl border border-blue-500/50 bg-[#0b1020] px-8 py-3 text-blue-100 transition duration-300 hover:border-blue-400 hover:bg-blue-500/10 hover:shadow-[0_0_20px_rgba(59,130,246,0.25)]"
             >
-              Ver Todas 
+              Ver Todas →
             </a>
           </div>
 
